@@ -1,30 +1,67 @@
 export const theme = {
   colors: {
-    primary: '#38bdf8',       // cyan-400
-    primaryDim: '#0ea5e9',    // cyan-500
-    secondary: '#a78bfa',     // purple-400
-    accent: '#2dd4bf',        // teal-400
-    terminal: '#4ade80',      // green-400
+    primary: '#ff6b35',
+    primaryDim: '#e85d2f',
+    secondary: '#ffb703',
+    accent: '#fb7185',
+    terminal: '#84cc16',
+
+    brand: {
+      50: '#fff4ed',
+      100: '#ffe6d5',
+      200: '#ffbf99',
+      300: '#ff9a66',
+      400: '#ff6b35',
+      500: '#e85d2f',
+      600: '#c2410c',
+      700: '#9a3412',
+    },
+
     bg: {
-      base: '#030712',        // gray-950
-      surface: '#0f172a',     // slate-900
-      card: '#1e293b',        // slate-800
-      hover: '#334155',       // slate-700
+      base: '#15110f',
+      surface: '#1f1815',
+      card: '#2b211d',
+      hover: '#3a2b25',
+      elevated: '#523a31',
     },
+
     text: {
-      primary: '#f1f5f9',     // slate-100
-      secondary: '#94a3b8',   // slate-400
-      muted: '#64748b',       // slate-500
+      primary: '#fff7f2',
+      secondary: '#f0d6c9',
+      muted: '#b8998b',
     },
-    border: '#1e293b',
-    glow: 'rgba(56, 189, 248, 0.15)',
+
+    border: '#3a2b25',
+    glow: 'rgba(255, 107, 53, 0.16)',
+    grid: 'rgba(255, 183, 3, 0.04)',
+    scrollbar: {
+      track: '#15110f',
+      thumb: '#523a31',
+    },
   },
+
   fonts: {
-    sans: "'Inter', sans-serif",
-    mono: "'JetBrains Mono', monospace",
+    sans: "'Clash Display', 'Sora', ui-sans-serif, system-ui, sans-serif",
+    mono: "'IBM Plex Mono', ui-monospace, monospace",
   },
+
+  effects: {
+    glowCyan: {
+      boxShadow:
+        '0 0 22px rgba(255, 107, 53, 0.15), 0 0 58px rgba(251, 113, 133, 0.05)',
+    },
+    grid: {
+      size: '34px 34px',
+      color: 'rgba(255, 183, 3, 0.04)',
+    },
+    scrollbar: {
+      width: '8px',
+      radius: '2px',
+    },
+  },
+
   nav: {
-    height: '64px',
+    height: '66px',
   },
 } as const;
 

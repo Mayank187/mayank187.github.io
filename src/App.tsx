@@ -1,3 +1,4 @@
+import { ThemeProvider } from './components/ThemeProvider';
 import { Navbar } from './components/Navbar';
 import { GridBackground } from './components/GridBackground';
 import { Footer } from './components/Footer';
@@ -14,22 +15,24 @@ import { Contact } from './sections/Contact';
 
 export default function App() {
   return (
-    <div className="relative min-h-screen">
-      <GridBackground />
-      <Navbar />
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Publications />
-        <Certifications />
-        <CurrentFocus />
-        <Resume />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="relative min-h-screen">
+        <GridBackground />
+        <Navbar />
+        <main className="relative z-10">
+          <Hero />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Publications />
+          <Certifications />
+          <CurrentFocus />
+          <Resume />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }

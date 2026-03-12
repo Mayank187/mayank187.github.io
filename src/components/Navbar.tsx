@@ -22,7 +22,15 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
-        <a href="#" className="flex items-center gap-2">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.pushState(null, '', window.location.pathname);
+          }}
+          className="flex items-center gap-2"
+        >
           <span className="font-mono text-sm text-brand-400">~/</span>
           <span className="font-semibold text-slate-100">mayank</span>
         </a>
@@ -86,7 +94,13 @@ export function Navbar() {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileOpen(false);
+                    setTimeout(() => {
+                      document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                  }}
                   className={cn(
                     'rounded-md px-3 py-2 font-mono text-sm transition-colors',
                     active === item.id
