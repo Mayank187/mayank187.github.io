@@ -11,7 +11,7 @@ export function Certifications() {
   return (
     <section id="certifications" className="relative px-4 py-24 md:px-6">
       <div className="mx-auto max-w-4xl">
-        <SectionHeading prefix="06" title="Signals" id="certifications-heading" />
+        <SectionHeading prefix="06" title="Recognitions" id="certifications-heading" />
 
         {/* Tabs */}
         <div className="mb-8 flex gap-2">
