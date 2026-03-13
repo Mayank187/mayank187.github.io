@@ -6,9 +6,11 @@ interface Props {
   className?: string;
   onClick?: () => void;
   glowColor?: string;
+  'data-cursor'?: string;
+  'data-cursor-label'?: string;
 }
 
-export function TiltCard({ children, className = '', onClick, glowColor = 'rgba(255, 107, 53, 0.15)' }: Props) {
+export function TiltCard({ children, className = '', onClick, glowColor = 'rgba(255, 107, 53, 0.15)', ...rest }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
   const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
@@ -37,6 +39,7 @@ export function TiltCard({ children, className = '', onClick, glowColor = 'rgba(
       ref={ref}
       className={className}
       onClick={onClick}
+      {...rest}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={handleMouseLeave}

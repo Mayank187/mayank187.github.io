@@ -56,3 +56,19 @@ body {
 .glow-cyan {
   box-shadow: 0 0 20px var(--glow-color, rgba(56, 189, 248, 0.15)), 0 0 60px var(--glow-color, rgba(56, 189, 248, 0.05));
 }
+
+/* Hide default cursor on non-touch devices (custom cursor replaces it) */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* Scroll snap for presentation-like flow */
+html {
+  scroll-snap-type: y proximity;
+}
+
+section {
+  scroll-snap-align: start;
+}

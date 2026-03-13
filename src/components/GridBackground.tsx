@@ -1,7 +1,17 @@
+import { motion, useScroll, useTransform } from 'framer-motion';
+
 export function GridBackground() {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 3000], [0, -900]);
+
   return (
-    <div className="pointer-events-none fixed inset-0 z-0">
-      <div className="bg-grid h-full w-full opacity-100" />
+    <motion.div
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2, ease: 'easeOut' }}
+    >
+      <motion.div className="bg-grid h-[200%] w-full opacity-100" style={{ y }} />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface-950/50 to-surface-950" />
       {/* Noise texture overlay */}
       <div
@@ -12,6 +22,6 @@ export function GridBackground() {
           backgroundSize: '256px 256px',
         }}
       />
-    </div>
+    </motion.div>
   );
 }

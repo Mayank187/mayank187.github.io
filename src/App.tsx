@@ -2,6 +2,8 @@ import { ThemeProvider } from './components/ThemeProvider';
 import { Navbar } from './components/Navbar';
 import { GridBackground } from './components/GridBackground';
 import { SpotlightCursor } from './components/SpotlightCursor';
+import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { HireBadge } from './components/HireBadge';
 import { Footer } from './components/Footer';
 import { SectionDivider } from './components/SectionDivider';
 import { Hero } from './sections/Hero';
@@ -19,6 +21,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <div className="relative min-h-screen">
+        <ScrollProgressBar />
         <GridBackground />
         <SpotlightCursor />
         <Navbar />
@@ -40,6 +43,7 @@ export default function App() {
           <Resume />
           <Contact />
         </main>
+        <HireBadge />
         <Footer />
       </div>
     </ThemeProvider>

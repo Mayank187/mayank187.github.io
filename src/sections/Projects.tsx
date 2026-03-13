@@ -28,6 +28,8 @@ export function Projects() {
             <motion.div key={project.id} variants={fadeUp}>
               <TiltCard
                 className="group cursor-pointer overflow-hidden rounded-xl border border-slate-800 bg-slate-900/50 transition-all hover:border-slate-700 hover:shadow-lg hover:shadow-brand-400/5"
+                data-cursor="action"
+                data-cursor-label="Explore"
                 onClick={() => setSelected(project)}
               >
                 {project.gradient && (
