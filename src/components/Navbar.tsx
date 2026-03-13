@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
 import { navItems } from '../data/navigation';
 import { profile } from '../data/profile';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import { cn } from '../utils/cn';
+import { mobileMenu, navItem, fadeUp } from '../data/animations';
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -36,23 +37,34 @@ export function Navbar() {
         </a>
 
         {/* Desktop */}
-        <div className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={cn(
-                'rounded-md px-3 py-1.5 font-mono text-xs transition-colors',
-                active === item.id
-                  ? 'bg-brand-400/10 text-brand-400'
-                  : 'text-slate-400 hover:text-slate-200',
-              )}
-            >
-              <span className="text-slate-600">{item.prefix}.</span>
-              {item.label}
-            </a>
-          ))}
-        </div>
+        <LayoutGroup>
+          <div className="hidden items-center gap-1 md:flex">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={cn(
+                  'relative rounded-md px-3 py-1.5 font-mono text-xs transition-colors',
+                  active === item.id
+                    ? 'text-brand-400'
+                    : 'text-slate-400 hover:text-slate-200',
+                )}
+              >
+                {active === item.id && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-0 rounded-md bg-brand-400/10"
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">
+                  <span className="text-slate-600">{item.prefix}.</span>
+                  {item.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        </LayoutGroup>
 
         <div className="hidden items-center gap-2 md:flex">
           <a href={profile.github} target="_blank" rel="noopener noreferrer" className="rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-200">
@@ -84,15 +96,17 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            variants={mobileMenu}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
             className="overflow-hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-lg md:hidden"
           >
             <div className="flex flex-col gap-1 p-4">
               {navItems.map((item) => (
-                <a
+                <motion.a
                   key={item.id}
+                  variants={navItem}
                   href={`#${item.id}`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -109,13 +123,16 @@ export function Navbar() {
                   )}
                 >
                   <span className="text-slate-600">{item.prefix}.</span> {item.label}
-                </a>
+                </motion.a>
               ))}
-              <div className="mt-3 flex items-center gap-3 border-t border-slate-800 pt-3">
+              <motion.div
+                variants={fadeUp}
+                className="mt-3 flex items-center gap-3 border-t border-slate-800 pt-3"
+              >
                 <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200"><Github size={18} /></a>
                 <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200"><Linkedin size={18} /></a>
                 <a href={profile.resumePath} target="_blank" rel="noopener noreferrer" className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-brand-400/30 bg-brand-400/10 px-3 py-1.5 font-mono text-xs text-brand-400"><FileText size={14} /> resume.pdf</a>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}

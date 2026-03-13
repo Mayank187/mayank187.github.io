@@ -41,8 +41,9 @@ export const theme = {
   },
 
   fonts: {
-    sans: "'Clash Display', 'Sora', ui-sans-serif, system-ui, sans-serif",
-    mono: "'IBM Plex Mono', ui-monospace, monospace",
+    sans: "'Sora', ui-sans-serif, system-ui, sans-serif",
+    display: "'Clash Display', 'Sora', ui-sans-serif, system-ui, sans-serif",
+    mono: "'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace",
   },
 
   effects: {

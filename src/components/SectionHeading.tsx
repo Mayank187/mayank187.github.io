@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { stagger, fadeUp, lineReveal, viewportEarly } from '../data/animations';
 
 interface Props {
   prefix: string;
@@ -9,16 +10,23 @@ interface Props {
 export function SectionHeading({ prefix, title, id }: Props) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.5 }}
+      variants={stagger(0.1)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportEarly}
       className="mb-12 flex items-center gap-4"
       id={id}
     >
-      <span className="font-mono text-sm text-brand-400">{prefix}.</span>
-      <h2 className="text-2xl font-bold text-slate-100 md:text-3xl">{title}</h2>
-      <div className="h-px flex-1 bg-gradient-to-r from-slate-700 to-transparent" />
+      <motion.span variants={fadeUp} className="font-mono text-sm text-brand-400">
+        {prefix}.
+      </motion.span>
+      <motion.h2 variants={fadeUp} className="text-2xl font-bold text-slate-100 md:text-3xl">
+        {title}
+      </motion.h2>
+      <motion.div
+        variants={lineReveal}
+        className="h-px flex-1 bg-gradient-to-r from-slate-700 to-transparent"
+      />
     </motion.div>
   );
 }

@@ -9,6 +9,8 @@ export interface Project {
   badges: string[];
   github?: string;
   demo?: string;
+  icon?: string;
+  gradient?: [string, string];
   featured: boolean;
 }
 
@@ -23,6 +25,8 @@ export const projects: Project[] = [
     impact: 'Achieved high F1 scores across 500+ tag categories with sub-100ms inference latency in containerized deployment.',
     badges: ['NLP', 'DEPLOYED', 'API', 'MULTI-LABEL CLASSIFICATION'],
     github: 'https://github.com/Mayank187/StackoverflowTags',
+    icon: '🏷️',
+    gradient: ['#ff6b35', '#ffb703'],
     featured: true,
   },
   {
@@ -35,6 +39,8 @@ export const projects: Project[] = [
     impact: 'Deployed user-facing AI app demonstrating practical LLM application design with intuitive UX.',
     badges: ['LLM', 'DEPLOYED','LangChain', 'Streamlit'],
     github: 'https://github.com/Mayank187/RestaurantNameGenerator',
+    icon: '🍽️',
+    gradient: ['#fb7185', '#ffb703'],
     featured: true,
   },
   {
@@ -46,6 +52,8 @@ export const projects: Project[] = [
     stack: ['LangChain', 'FAISS', 'Pinecone', 'FastAPI', 'Python', 'Docker', 'Evaluation Frameworks'],
     impact: 'Delivered production-grade RAG systems serving real users with measurable retrieval quality improvements.',
     badges: ['RAG', 'PROD', 'LLM'],
+    icon: '🔗',
+    gradient: ['#84cc16', '#38bdf8'],
     featured: true,
   },
   {
@@ -57,6 +65,8 @@ export const projects: Project[] = [
     stack: ['PyTorch', 'Transformers', 'MLflow', 'Docker', 'GPU Inference', 'Computer Vision'],
     impact: 'Improved detection accuracy significantly while reducing manual inspection effort by over 70%.',
     badges: ['CV', 'PROD', 'RESEARCH-ADJACENT'],
+    icon: '👁️',
+    gradient: ['#a78bfa', '#fb7185'],
     featured: true,
   },
 ];

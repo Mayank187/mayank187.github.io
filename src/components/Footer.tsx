@@ -1,8 +1,16 @@
+import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
+import { fadeIn, viewport } from '../data/animations';
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800/50 px-4 py-8">
+    <motion.footer
+      variants={fadeIn}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      className="border-t border-slate-800/50 px-4 py-8"
+    >
       <div className="mx-auto max-w-4xl text-center">
         <p className="font-mono text-xs text-slate-600">
           <span className="text-slate-500">{'>'}</span> built by{' '}
@@ -13,6 +21,6 @@ export function Footer() {
           React + TypeScript + Tailwind
         </p>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

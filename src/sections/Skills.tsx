@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { SectionHeading } from '../components/SectionHeading';
 import { skillCategories } from '../data/skills';
 import { cn } from '../utils/cn';
+import { stagger, fadeUpWithStagger, tagPop, hover, tap } from '../data/animations';
 
 export function Skills() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
@@ -18,8 +19,10 @@ export function Skills() {
 
         {/* Filter bar */}
         <div className="mb-8 flex flex-wrap gap-2">
-          <button
+          <motion.button
             onClick={() => setActiveFilter(null)}
+            whileHover={hover.scale}
+            whileTap={tap.press}
             className={cn(
               'rounded-lg px-3 py-1.5 font-mono text-xs transition-colors',
               !activeFilter
@@ -28,11 +31,13 @@ export function Skills() {
             )}
           >
             all
-          </button>
+          </motion.button>
           {skillCategories.map((cat) => (
-            <button
+            <motion.button
               key={cat.id}
               onClick={() => setActiveFilter(activeFilter === cat.id ? null : cat.id)}
+              whileHover={hover.scale}
+              whileTap={tap.press}
               className={cn(
                 'rounded-lg px-3 py-1.5 font-mono text-xs transition-colors',
                 activeFilter === cat.id
@@ -41,38 +46,45 @@ export function Skills() {
               )}
             >
               {cat.label.toLowerCase()}
-            </button>
+            </motion.button>
           ))}
         </div>
 
         {/* Skill groups */}
-        <div className="grid gap-4 md:grid-cols-2">
-          {filtered.map((cat, i) => (
+        <motion.div
+          key={activeFilter ?? 'all'}
+          variants={stagger(0.06)}
+          initial="hidden"
+          animate="visible"
+          className="grid gap-4 md:grid-cols-2"
+        >
+          {filtered.map((cat) => (
             <motion.div
               key={cat.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              variants={fadeUpWithStagger(0.025)}
               layout
               className="rounded-xl border border-slate-800 bg-slate-900/50 p-5"
             >
-              <h3 className="mb-3 font-mono text-xs uppercase tracking-wider text-brand-400">
+              <motion.h3
+                variants={tagPop}
+                className="mb-3 font-mono text-xs uppercase tracking-wider text-brand-400"
+              >
                 {cat.label}
-              </h3>
+              </motion.h3>
               <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill) => (
-                  <span
+                  <motion.span
                     key={skill}
+                    variants={tagPop}
                     className="rounded-md border border-slate-700/50 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-300 transition-colors hover:border-brand-400/30 hover:text-brand-400"
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,18 +1,20 @@
 import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
 import { profile } from '../data/profile';
+import { fadeUpWithStagger, fadeUp, tagPop, stagger, viewport } from '../data/animations';
 
 export function CurrentFocus() {
   return (
     <section className="relative px-4 py-16 md:px-6">
       <div className="mx-auto max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          variants={fadeUpWithStagger(0.06)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
           className="rounded-xl border border-slate-800 bg-slate-900/50 p-6"
         >
-          <div className="mb-4 flex items-center gap-2">
+          <motion.div variants={fadeUp} className="mb-4 flex items-center gap-2">
             <Zap size={16} className="text-brand-400" />
             <h3 className="font-mono text-xs uppercase tracking-wider text-brand-400">
               current_focus
@@ -21,17 +23,18 @@ export function CurrentFocus() {
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
               active
             </span>
-          </div>
-          <div className="flex flex-wrap gap-2">
+          </motion.div>
+          <motion.div variants={stagger(0.05)} className="flex flex-wrap gap-2">
             {profile.currentFocus.map((item) => (
-              <span
+              <motion.span
                 key={item}
+                variants={tagPop}
                 className="rounded-lg border border-slate-700/50 bg-slate-800/80 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-brand-400/30 hover:text-brand-400"
               >
                 {item}
-              </span>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

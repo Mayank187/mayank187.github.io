@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { SectionHeading } from '../components/SectionHeading';
 import { profile } from '../data/profile';
+import { stagger, fadeUp, fadeUpWithStagger, viewport } from '../data/animations';
 
 export function About() {
   return (
@@ -8,14 +9,14 @@ export function About() {
       <div className="mx-auto max-w-4xl">
         <SectionHeading prefix="01" title="About" id="about-heading" />
 
-        <div className="grid gap-8 md:grid-cols-3">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="md:col-span-2 space-y-4"
-          >
+        <motion.div
+          variants={stagger(0.15)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="grid gap-8 md:grid-cols-3"
+        >
+          <motion.div variants={fadeUp} className="md:col-span-2 space-y-4">
             {profile.about.map((p, i) => (
               <p key={i} className="text-sm leading-relaxed text-slate-400">
                 {p}
@@ -24,39 +25,31 @@ export function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={fadeUpWithStagger(0.06)}
             className="rounded-xl border border-slate-800 bg-slate-900/50 p-5"
           >
-            <h3 className="mb-3 font-mono text-xs uppercase tracking-wider text-brand-400">
+            <motion.h3
+              variants={fadeUp}
+              className="mb-3 font-mono text-xs uppercase tracking-wider text-brand-400"
+            >
               system.profile
-            </h3>
+            </motion.h3>
             <div className="space-y-3 font-mono text-xs">
-              <div>
-                <span className="text-slate-500">role:</span>{' '}
-                <span className="text-slate-300">{profile.title}</span>
-              </div>
-              <div>
-                <span className="text-slate-500">location:</span>{' '}
-                <span className="text-slate-300">{profile.location}</span>
-              </div>
-              <div>
-                <span className="text-slate-500">focus:</span>{' '}
-                <span className="text-slate-300">LLMs, RAG, NLP, MLOps</span>
-              </div>
-              <div>
-                <span className="text-slate-500">status:</span>{' '}
-                <span className="text-green-400">● available for impact</span>
-              </div>
-              <div>
-                <span className="text-slate-500">education:</span>{' '}
-                <span className="text-slate-300">B.Tech CSE, SRM (2015-2019)</span>
-              </div>
+              {[
+                { key: 'role', value: profile.title },
+                { key: 'location', value: profile.location },
+                { key: 'focus', value: 'LLMs, RAG, NLP, MLOps' },
+                { key: 'status', value: '● available for impact', color: 'text-green-400' },
+                { key: 'education', value: 'B.Tech CSE, SRM (2015-2019)' },
+              ].map((item) => (
+                <motion.div key={item.key} variants={fadeUp}>
+                  <span className="text-slate-500">{item.key}:</span>{' '}
+                  <span className={item.color ?? 'text-slate-300'}>{item.value}</span>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

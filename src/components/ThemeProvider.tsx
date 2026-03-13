@@ -75,6 +75,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     // Fonts
     root.style.setProperty('--font-sans', theme.fonts.sans);
+    root.style.setProperty('--font-display', theme.fonts.display);
     root.style.setProperty('--font-mono', theme.fonts.mono);
 
     // Body
