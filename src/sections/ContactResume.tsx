@@ -16,7 +16,7 @@ export function ContactResume() {
   };
 
   return (
-    <section id="contact" className="relative flex min-h-screen items-center px-4 py-24 md:px-6">
+    <section id="contact" className="relative flex min-h-dvh items-center px-4 py-16 md:py-24 md:px-6">
       <div className="mx-auto w-full max-w-4xl">
         <SectionHeading prefix="07" title="Get in Touch" id="contact-heading" />
 

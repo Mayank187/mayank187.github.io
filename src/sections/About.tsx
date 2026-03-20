@@ -14,7 +14,7 @@ const profileFields = [
 
 export function About() {
   return (
-    <section id="about" className="relative flex h-screen items-center overflow-hidden px-4 py-24 md:px-6">
+    <section id="about" className="relative flex min-h-dvh items-center overflow-hidden px-4 py-16 md:py-24 md:px-6">
       <div className="mx-auto w-full max-w-5xl">
         <SectionHeading prefix="01" title="About" id="about-heading" />
 
