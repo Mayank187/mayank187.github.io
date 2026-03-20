@@ -26,7 +26,7 @@ export const projects: Project[] = [
     badges: ['NLP', 'DEPLOYED', 'API', 'MULTI-LABEL CLASSIFICATION'],
     github: 'https://github.com/Mayank187/StackoverflowTags',
     icon: '🏷️',
-    gradient: ['#ff6b35', '#ffb703'],
+    gradient: ['#f59e0b', '#fbbf24'],
     featured: true,
   },
   {
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     badges: ['LLM', 'DEPLOYED','LangChain', 'Streamlit'],
     github: 'https://github.com/Mayank187/RestaurantNameGenerator',
     icon: '🍽️',
-    gradient: ['#fb7185', '#ffb703'],
+    gradient: ['#d97706', '#fcd34d'],
     featured: true,
   },
   {
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     impact: 'Delivered production-grade RAG systems serving real users with measurable retrieval quality improvements.',
     badges: ['RAG', 'PROD', 'LLM'],
     icon: '🔗',
-    gradient: ['#84cc16', '#38bdf8'],
+    gradient: ['#84cc16', '#fbbf24'],
     featured: true,
   },
   {
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     impact: 'Improved detection accuracy significantly while reducing manual inspection effort by over 70%.',
     badges: ['CV', 'PROD', 'RESEARCH-ADJACENT'],
     icon: '👁️',
-    gradient: ['#a78bfa', '#fb7185'],
+    gradient: ['#b45309', '#fde68a'],
     featured: true,
   },
 ];
