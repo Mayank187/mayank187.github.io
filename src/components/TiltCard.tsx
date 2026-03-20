@@ -10,7 +10,7 @@ interface Props {
   'data-cursor-label'?: string;
 }
 
-export function TiltCard({ children, className = '', onClick, glowColor = 'rgba(255, 107, 53, 0.15)', ...rest }: Props) {
+export function TiltCard({ children, className = '', onClick, glowColor = 'rgba(245, 158, 11, 0.15)', ...rest }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
   const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
