@@ -3,16 +3,20 @@ import { useEffect } from 'react';
 /**
  * Lightweight section-snap: when a user finishes scrolling and lands
  * within the top/bottom threshold of a section boundary, nudge them
- * to the nearest section start. Works with variable-height sections
- * and doesn't fight internal scroll animations.
+ * to the nearest section start. Disabled on touch devices to avoid
+ * fighting mobile momentum scrolling.
  */
 export function useSectionSnap() {
   useEffect(() => {
+    // Disable on touch devices — mobile momentum scroll is better UX
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
     let timeout: ReturnType<typeof setTimeout>;
     let isSnapping = false;
 
-    const THRESHOLD = 120; // px proximity to snap
-    const DEBOUNCE = 150; // ms after scroll stops
+    const THRESHOLD = 120;
+    const DEBOUNCE = 150;
 
     const getSections = () =>
       Array.from(document.querySelectorAll<HTMLElement>('[data-section]'));
@@ -35,7 +39,6 @@ export function useSectionSnap() {
         }
       }
 
-      // Only snap if we're close to a boundary but not already there
       if (closest && closestDist > 2 && closestDist < THRESHOLD) {
         isSnapping = true;
         closest.scrollIntoView({ behavior: 'smooth' });
