@@ -29,6 +29,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* On touch devices, disable CSS smooth scroll to avoid fighting momentum */
+@media (pointer: coarse) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background-color: var(--color-surface-950);
   color: #e5e5e5;
