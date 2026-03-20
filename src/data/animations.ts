@@ -119,7 +119,7 @@ export const hover = {
   tilt: { rotate: 8, scale: 1.15, transition: transition.bouncy },
   /** Glow shadow for cards */
   glow: {
-    boxShadow: '0 0 24px rgba(255,107,53,0.12), 0 8px 32px rgba(0,0,0,0.25)',
+    boxShadow: '0 0 24px rgba(245,158,11,0.12), 0 8px 32px rgba(0,0,0,0.25)',
     transition: transition.quick,
   },
 };

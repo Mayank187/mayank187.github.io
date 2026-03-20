@@ -78,8 +78,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.style.setProperty('--font-display', theme.fonts.display);
     root.style.setProperty('--font-mono', theme.fonts.mono);
 
-    // Body
-    document.body.style.backgroundColor = c.bg.base;
+    // Body — text color only; background stays on html so the dots canvas shows through
     document.body.style.color = c.text.primary;
 
     // Grid & glow
