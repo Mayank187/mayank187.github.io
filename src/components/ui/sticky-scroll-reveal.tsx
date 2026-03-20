@@ -47,19 +47,21 @@ export function StickyScroll({
     'linear-gradient(135deg, var(--color-surface-950), var(--color-surface-800))',
   ];
 
-  // Scroll height: enough room per item but not excessive
-  const scrollHeight = `${Math.max(content.length * 50, 100)}vh`;
+  // Use dvh for mobile-safe viewport, less height per item on mobile
+  const scrollHeight = `${Math.max(content.length * 50, 100)}dvh`;
 
   return (
     <div ref={ref} style={{ height: scrollHeight }} className="relative">
-      <div className="sticky top-0 flex h-screen flex-col justify-center px-4 md:px-6">
+      <div className="sticky top-0 flex h-dvh flex-col justify-center px-4 md:px-6">
         <div className="mx-auto w-full max-w-5xl">
           {heading && (
-            <p className="mb-8 font-mono text-xs uppercase tracking-widest text-brand-400">
+            <p className="mb-4 font-mono text-xs uppercase tracking-widest text-brand-400 md:mb-8">
               {heading}
             </p>
           )}
-          <div className="flex items-start gap-10">
+
+          {/* Desktop: side-by-side | Mobile: stacked */}
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
             {/* Left — text content, crossfade */}
             <div className="min-w-0 flex-1">
               <div className="relative">
@@ -74,10 +76,10 @@ export function StickyScroll({
                     transition={{ duration: 0.4, ease: 'easeInOut' }}
                     className={activeCard === index ? 'relative' : 'pointer-events-none absolute inset-0'}
                   >
-                    <h2 className="mb-4 text-2xl font-bold text-slate-100 md:text-3xl">
+                    <h2 className="mb-3 text-xl font-bold text-slate-100 md:mb-4 md:text-3xl">
                       {item.title}
                     </h2>
-                    <p className="max-w-lg text-sm leading-relaxed text-slate-400">
+                    <p className="text-sm leading-relaxed text-slate-400 md:max-w-lg">
                       {item.description}
                     </p>
                   </motion.div>
@@ -85,7 +87,7 @@ export function StickyScroll({
               </div>
 
               {/* Progress dots */}
-              <div className="mt-8 flex gap-2">
+              <div className="mt-6 flex gap-2 md:mt-8">
                 {content.map((_, index) => (
                   <div
                     key={index}
@@ -100,12 +102,12 @@ export function StickyScroll({
               </div>
             </div>
 
-            {/* Right — sticky gradient card */}
+            {/* Right card — visible on all screens, smaller on mobile */}
             <motion.div
               animate={{ background: linearGradients[activeCard % linearGradients.length] }}
               transition={{ duration: 0.5 }}
               className={cn(
-                'relative hidden h-72 w-80 flex-shrink-0 overflow-hidden rounded-xl border border-slate-700/50 lg:block',
+                'relative h-48 w-full flex-shrink-0 overflow-hidden rounded-xl border border-slate-700/50 md:h-60 lg:h-72 lg:w-80',
                 contentClassName,
               )}
             >
