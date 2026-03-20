@@ -5,7 +5,7 @@ import { fadeUp, hover, tap, viewport } from '../data/animations';
 
 export function Resume() {
   return (
-    <section className="relative px-4 py-16 md:px-6">
+    <section className="relative flex min-h-screen items-center px-4 py-16 md:px-6">
       <div className="mx-auto max-w-4xl">
         <motion.div
           variants={fadeUp}

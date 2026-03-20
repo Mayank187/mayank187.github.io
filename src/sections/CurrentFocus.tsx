@@ -5,7 +5,7 @@ import { fadeUpWithStagger, fadeUp, tagPop, stagger, viewport } from '../data/an
 
 export function CurrentFocus() {
   return (
-    <section className="relative px-4 py-16 md:px-6">
+    <section className="relative flex min-h-screen items-center px-4 py-16 md:px-6">
       <div className="mx-auto max-w-4xl">
         <motion.div
           variants={fadeUpWithStagger(0.06)}
