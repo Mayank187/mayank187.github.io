@@ -8,23 +8,19 @@ interface HolographicCardProps {
 export function HolographicCard({ children, className = '' }: HolographicCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const applyTransform = (x: number, y: number, rect: DOMRect) => {
     const card = cardRef.current;
     if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     const rotateX = (y - centerY) / 15;
     const rotateY = (centerX - x) / 15;
-
     card.style.setProperty('--holo-x', `${x}px`);
     card.style.setProperty('--holo-y', `${y}px`);
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
 
-  const handleMouseLeave = () => {
+  const resetTransform = () => {
     const card = cardRef.current;
     if (!card) return;
     card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
@@ -32,11 +28,28 @@ export function HolographicCard({ children, className = '' }: HolographicCardPro
     card.style.setProperty('--holo-y', '50%');
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    applyTransform(e.clientX - rect.left, e.clientY - rect.top, rect);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const touch = e.touches[0];
+    const rect = card.getBoundingClientRect();
+    applyTransform(touch.clientX - rect.left, touch.clientY - rect.top, rect);
+  };
+
   return (
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseLeave={resetTransform}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={resetTransform}
       className={`holo-card ${className}`}
       style={
         {
