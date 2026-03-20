@@ -6,69 +6,60 @@ import { TerminalBlock } from '../components/TerminalBlock';
 import { MagneticButton } from '../components/MagneticButton';
 import { numberReveal } from '../data/animations';
 
-// Cinematic stagger — each layer enters sequentially with wider gaps
-const cinematicContainer: Variants = {
+const container: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.22, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
 
-const cinematicFadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
-const cinematicMetrics: Variants = {
+const metricsContainer: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center px-4 pt-16">
+    <section className="relative px-4 py-20 md:py-28">
       <motion.div
         className="mx-auto max-w-4xl"
-        variants={cinematicContainer}
+        variants={container}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
       >
-        {/* Layer 1: Terminal */}
+        {/* Terminal */}
         <TerminalBlock />
 
-        {/* Layer 2: Name */}
-        <motion.h1
-          variants={cinematicFadeUp}
-          className="mb-4 font-display text-5xl font-semibold tracking-[-0.04em] text-slate-100 md:text-7xl lg:text-8xl"
-        >
-          {profile.name}
-          <span className="text-brand-400">.</span>
-        </motion.h1>
-
-        {/* Layer 3: Tagline */}
+        {/* Tagline */}
         <motion.p
-          variants={cinematicFadeUp}
-          className="mb-6 max-w-2xl font-display text-lg font-light tracking-tight text-slate-400 md:text-xl"
+          variants={fadeUp}
+          className="mb-4 font-display text-2xl font-semibold tracking-tight text-slate-200 md:text-3xl"
         >
           {profile.tagline}
         </motion.p>
 
-        {/* Layer 4: Intro */}
+        {/* Intro */}
         <motion.p
-          variants={cinematicFadeUp}
+          variants={fadeUp}
           className="mb-8 max-w-xl text-sm leading-relaxed text-slate-500"
         >
-          I architect, build, and ship production-grade AI systems across the full stack, from LLM APIs, RAG pipelines, and intelligent retrieval to scalable NLP services, model deployment, and ML infrastructure that delivers measurable business impact.
+          I architect, build, and ship production-grade AI systems across the full stack — from LLM APIs, RAG pipelines, and intelligent retrieval to scalable NLP services, model deployment, and ML infrastructure that delivers measurable business impact.
         </motion.p>
 
-        {/* Layer 5: CTAs */}
-        <motion.div variants={cinematicFadeUp} className="mb-12 flex flex-wrap gap-3">
+        {/* CTAs */}
+        <motion.div variants={fadeUp} className="mb-12 flex flex-wrap gap-3">
           <MagneticButton
             href="#projects"
             data-cursor="action"
@@ -95,9 +86,9 @@ export function Hero() {
           </MagneticButton>
         </motion.div>
 
-        {/* Layer 6: Metrics cascade */}
+        {/* Metrics */}
         <motion.div
-          variants={cinematicMetrics}
+          variants={metricsContainer}
           className="flex flex-wrap gap-6 border-t border-slate-800/50 pt-8"
         >
           {profile.metrics.map((m, i) => (

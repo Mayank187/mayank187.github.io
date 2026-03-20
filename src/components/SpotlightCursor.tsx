@@ -76,7 +76,7 @@ export function SpotlightCursor() {
         style={{
           left: springX,
           top: springY,
-          background: 'radial-gradient(circle, rgba(255,107,53,0.06) 0%, rgba(255,183,3,0.03) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(245,158,11,0.06) 0%, rgba(251,191,36,0.03) 40%, transparent 70%)',
         }}
       />
 
@@ -99,7 +99,7 @@ export function SpotlightCursor() {
         animate={{
           width: isHover ? 48 : 32,
           height: isHover ? 48 : 32,
-          borderColor: isHover ? 'rgba(255,107,53,0.6)' : 'rgba(255,107,53,0.25)',
+          borderColor: isHover ? 'rgba(245,158,11,0.6)' : 'rgba(245,158,11,0.25)',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 22 }}
       />
