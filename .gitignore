@@ -27,3 +27,12 @@ dist-ssr
 .claude
 .agents
 skills-lock.json
+
+# QA screenshots & local scratch output (not part of the site)
+artifacts/
+coverage/
+*.tmp
+.cache/
+
+# Internal / confidential planning docs — keep local, out of the public repo
+docs/
