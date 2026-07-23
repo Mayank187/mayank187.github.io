@@ -1,6 +1,10 @@
 # mayank187.github.io — Personal Portfolio
 
-Production-quality personal portfolio for **Mayank Khandelwal**, Senior AI/ML Engineer.
+Personal portfolio for **Mayank Khandelwal**, Senior AI/ML Engineer.
+
+> **Internal notes:** planning, content-gap, and changelog docs live in a local
+> `docs/` folder that is git-ignored on purpose (it contains internal notes and
+> should not ship to the public repo).
 
 ## Design Philosophy
 
@@ -35,18 +39,24 @@ All content lives in `src/data/`:
 
 | File | Content |
 |------|---------|
-| `profile.ts` | Name, title, about, metrics, social links |
-| `experience.ts` | Work history timeline |
-| `skills.ts` | Tech stack categories |
-| `projects.ts` | Featured projects (JSON-driven modal system) |
-| `publications.ts` | Research & publications |
+| `profile.ts` | Name, title, positioning, about, honest highlights, availability, social links |
+| `experience.ts` | Work history — employer, optional `client`, domain, ownership bullets |
+| `skills.ts` | Capability-led groups (description, technologies, proficiency, proof points) |
+| `projects.ts` | Case studies — structured `Project` model with `tier`, `evidenceStatus`, `contentTodo` |
+| `publications.ts` | Research (framed by year) |
 | `certifications.ts` | Certifications & awards |
 | `navigation.ts` | Navbar sections |
 | `theme.ts` | Colors, fonts — single-file theme config |
 
-### Adding a New Project
+### Adding / editing a case study
 
-Add an entry to `src/data/projects.ts`. The modal system is fully JSON-driven — just add a new object with `id`, `title`, `summary`, `problem`, `approach`, `stack`, `impact`, `badges`, and optional `github`/`demo` links.
+Add an entry to `src/data/projects.ts`. Flagships use `tier: 'flagship'`; the
+narrative fields (`problem`, `ownership`, `scale`, `constraints`, `approach`,
+`architecture`, `decisions`, `evaluation`, `outcome`, `lessons`) render only when
+present. Keep outcomes honest: if a number isn't verified, leave it qualitative,
+set `evidenceStatus: 'requires-verification'`, and record what's missing in
+`contentTodo` (internal only — never shown to visitors). Flip to `'verified'` and
+remove `contentTodo` once real figures are in.
 
 ### Replacing the Resume
 
