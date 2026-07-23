@@ -4,15 +4,15 @@ import type { Variants, Transition } from 'framer-motion';
 // Reusable timing curves. Change these to adjust the overall feel site-wide.
 
 export const transition = {
-  /** Gentle spring — natural feel for entrances */
+  /** Gentle spring ,  natural feel for entrances */
   spring: { type: 'spring', stiffness: 260, damping: 25 } satisfies Transition,
-  /** Bouncy spring — playful micro-interactions */
+  /** Bouncy spring ,  playful micro-interactions */
   bouncy: { type: 'spring', stiffness: 400, damping: 15 } satisfies Transition,
-  /** Smooth ease-out — default entrance */
+  /** Smooth ease-out ,  default entrance */
   smooth: { type: 'tween', ease: 'easeOut', duration: 0.5 } satisfies Transition,
-  /** Quick ease — micro-interactions, hover feedback */
+  /** Quick ease ,  micro-interactions, hover feedback */
   quick: { type: 'tween', ease: [0.25, 0.46, 0.45, 0.94], duration: 0.3 } satisfies Transition,
-  /** Slow ease — dramatic reveals, gradient lines */
+  /** Slow ease ,  dramatic reveals, gradient lines */
   slow: { type: 'tween', ease: 'easeOut', duration: 0.8 } satisfies Transition,
 };
 
@@ -62,7 +62,7 @@ export const blurIn: Variants = {
 
 // ─── Stagger Containers ─────────────────────────────────────────────────────
 // Wrap children in a stagger container; each child uses an entrance variant.
-// The container itself is invisible — it only controls child timing.
+// The container itself is invisible ,  it only controls child timing.
 
 export const stagger = (
   staggerDelay = 0.08,
@@ -78,7 +78,7 @@ export const stagger = (
 });
 
 // ─── Combined Variants ──────────────────────────────────────────────────────
-// Animate self AND stagger children — great for cards containing lists/tags.
+// Animate self AND stagger children ,  great for cards containing lists/tags.
 
 export const fadeUpWithStagger = (staggerDelay = 0.03): Variants => ({
   hidden: { opacity: 0, y: 24 },
@@ -108,7 +108,7 @@ export const heroContainer: Variants = {
 };
 
 // ─── Hover / Tap (style objects for whileHover & whileTap) ───────────────────
-// These are NOT variants — pass them directly to whileHover / whileTap props.
+// These are NOT variants ,  pass them directly to whileHover / whileTap props.
 
 export const hover = {
   /** Lift card upward */
