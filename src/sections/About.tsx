@@ -16,7 +16,7 @@ export function About() {
   return (
     <section id="about" className="relative flex min-h-dvh items-center overflow-hidden px-4 py-16 md:py-24 md:px-6">
       <div className="mx-auto w-full max-w-5xl">
-        <SectionHeading prefix="01" title="About" id="about-heading" />
+        <SectionHeading prefix="02" title="About" id="about-heading" />
 
         <motion.div
           variants={stagger(0.12)}
@@ -27,7 +27,7 @@ export function About() {
         >
           {/* Top row: Bio + Terminal card */}
           <div className="grid gap-6 md:grid-cols-5">
-            {/* Bio ,  takes 3 cols */}
+            {/* Bio, takes 3 cols */}
             <motion.div variants={fadeUp} className="md:col-span-3">
               <HolographicCard className="h-full p-8">
                 <h3 className="mb-4 font-display text-lg font-bold text-slate-100">
@@ -43,7 +43,7 @@ export function About() {
               </HolographicCard>
             </motion.div>
 
-            {/* Terminal profile card ,  takes 2 cols */}
+            {/* Terminal profile card, takes 2 cols */}
             <motion.div variants={fadeUp} className="md:col-span-2">
               <HolographicCard className="h-full p-6">
                 {/* Terminal chrome */}
@@ -78,18 +78,6 @@ export function About() {
               </HolographicCard>
             </motion.div>
           </div>
-
-          {/* Bottom row: honest highlights (verifiable facts, not marketing categories) */}
-          <motion.div variants={fadeUp}>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              {profile.metrics.map((m) => (
-                <HolographicCard key={m.sublabel} className="flex flex-col justify-center p-5 text-center">
-                  <p className="text-sm font-bold leading-snug text-slate-100 md:text-base">{m.label}</p>
-                  <p className="mt-1 font-mono text-[11px] text-slate-500">{m.sublabel}</p>
-                </HolographicCard>
-              ))}
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

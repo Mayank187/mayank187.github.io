@@ -11,7 +11,7 @@ export function Certifications() {
         <SectionHeading prefix="05" title="Recognition" id="certifications-heading" />
 
         <div className="grid gap-8 md:grid-cols-2">
-          {/* Awards ,  kept prominent, each with organisation + year */}
+          {/* Awards, kept prominent, each with organisation + year */}
           <div>
             <h3 className="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-brand-400">
               <AwardIcon aria-hidden="true" size={14} /> Awards
@@ -39,7 +39,7 @@ export function Certifications() {
             </motion.ul>
           </div>
 
-          {/* Certifications ,  compact, no boilerplate */}
+          {/* Certifications, compact, no boilerplate */}
           <div>
             <h3 className="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-brand-400">
               <GraduationCap aria-hidden="true" size={14} /> Certifications

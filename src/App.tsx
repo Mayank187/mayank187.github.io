@@ -12,7 +12,7 @@ import { Skills } from './sections/Skills';
 import { Certifications } from './sections/Certifications';
 import { ContactResume } from './sections/ContactResume';
 
-// three.js background is heavy and purely decorative ,  load it lazily so it
+// three.js background is heavy and purely decorative, load it lazily so it
 // never blocks first paint or the core content bundle.
 const DottedSurface = lazy(() =>
   import('./components/ui/dotted-surface').then((m) => ({ default: m.DottedSurface })),
@@ -21,7 +21,7 @@ const DottedSurface = lazy(() =>
 /**
  * Boundary for decorative-only children. Logs in development and renders a
  * safe fallback (nothing) so the core page keeps rendering if a visual effect
- * fails ,  it never blanks the whole site.
+ * fails, it never blanks the whole site.
  */
 class DecorativeBoundary extends Component<
   { children: ReactNode; fallback?: ReactNode },
@@ -48,7 +48,7 @@ class DecorativeBoundary extends Component<
  *  - never under prefers-reduced-motion,
  *  - never on touch-first / small screens (so mobile never downloads three.js),
  *  - and only after the browser goes idle, so it never competes with the hero.
- * Returns null until then ,  the fixed background mounts with no layout shift.
+ * Returns null until then, the fixed background mounts with no layout shift.
  */
 function BackgroundFX() {
   const reduceMotion = useReducedMotion();
@@ -92,8 +92,8 @@ export default function App() {
         <Navbar />
         <main id="main" className="relative z-10">
           <Hero />
-          <About />
           <Projects />
+          <About />
           <Experience />
           <Skills />
           <Certifications />
