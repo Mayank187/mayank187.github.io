@@ -1,59 +1,68 @@
 export interface Experience {
   id: string;
+  /** Legal employer. */
   company: string;
+  /** End client, when the role was delivered through a services/staffing employer. */
+  client?: string;
   role: string;
   duration: string;
   location: string;
+  domain: string;
   summary: string;
   bullets: string[];
   tags: string[];
 }
 
+// Honesty note: bullets state personal ownership, personal contribution, and
+// wider-team/system outcomes distinctly. No invented scale, tools, or metrics.
 export const experiences: Experience[] = [
   {
     id: 'springer',
-    company: 'Springer Nature AI Labs',
+    company: 'Springer Nature',
     role: 'Senior AI/ML Engineer',
     duration: 'Oct 2025 – Present',
-    location: 'Pune',
-    summary: 'Designing and shipping LLM-based production systems for academic publishing.',
+    location: 'Pune, India',
+    domain: 'Researcher-facing AI assistant (beta) + production APIs',
+    summary: 'Core AI/ML contributor on a researcher-facing AI assistant (beta); own the multi-paper chat evaluation framework and a separate production academic-question API.',
     bullets: [
-      'Building LLM-powered production systems for research content workflows',
-      'Architecting RAG pipelines for intelligent retrieval and content understanding',
-      'Developing NLP services including the API for academic content search',
-      'Driving research-adjacent AI applications in large-scale publishing infrastructure',
+      'Core AI/ML contributor across a researcher-facing beta assistant ,  reading assistance, manuscript advice, related-paper discovery, question generation, technical review, and multi-paper chat.',
+      'Built an agentic technical-review workflow for structured analysis of research papers, assessed against peer-review data and human evaluation.',
+      'Contributed to multi-paper chat (HyDE query rewriting, dense retrieval with metadata filtering, citations) and owned question generation.',
+      'Implemented and own end to end the evaluation framework for multi-paper chat, decomposing answer quality into retrieval, grounding, relevance, and citation dimensions.',
+      'Separately, own a production academic-question API for the Springer Nature website (~1.5M PostgreSQL records; 100–150 RPS target, ~600 ms P90).',
     ],
-    tags: ['LLM', 'RAG', 'NLP', 'Production Systems', 'FastAPI', 'MLOps', 'AI Evaluation', 'Agentic AI', 'Langchain','LangGraph', 'Langfuse'],
+    tags: ['LLM', 'RAG', 'HyDE', 'Dense Retrieval', 'Evaluation', 'Multi-paper Chat', 'Technical Review', 'FastAPI', 'PostgreSQL', 'Kubernetes'],
   },
   {
     id: 'samsung',
-    company: 'Samsung Research India(OS: Tech Mahindra)',
+    company: 'Tech Mahindra',
+    client: 'Samsung Research India',
     role: 'Senior Machine Learning Engineer',
     duration: 'Jul 2024 – Oct 2025',
     location: 'India',
-    summary: 'Built query understanding and LLM solutions for e-commerce search.',
+    domain: 'E-commerce search & query understanding',
+    summary: 'Owned the out-of-domain query classifier end to end; contributed query-understanding signals to the wider e-commerce search ranking system.',
     bullets: [
-      'Engineered query understanding systems to improve e-commerce search relevance',
-      'Developed LLM-based solutions for customer search behavior analysis',
-      'Improved search engagement and conversion rates through ML-driven ranking',
-      'Built end-to-end pipelines from data ingestion to model serving',
+      'Owned the out-of-domain query classifier and its CPU inference end to end ,  >0.90 F1, 0.99 precision, ~10 ms inference (ONNX) against a 20 ms target.',
+      'Contributed query-understanding signals, embeddings, and retrieval components used by the wider ranking system.',
+      'Broader search-improvement work delivered ~35% relevance, ~25% engagement, and ~20% conversion gains in A/B testing.',
     ],
-    tags: ['LLM', 'Search', 'Query Understanding', 'E-Commerce', 'Ranking','FastAPI', 'MLOps', 'NLP', 'Query Classification', 'Search Relevance','OOD Detection','MLFlow'],
+    tags: ['Search', 'Query Understanding', 'OOD Detection', 'ONNX', 'CPU Inference', 'Ranking', 'FastAPI', 'MLflow', 'NLP'],
   },
   {
     id: 'camcom',
-    company: 'Camcom',
+    company: 'Camcom Technologies',
     role: 'Senior Machine Learning Engineer',
     duration: 'Apr 2023 – Jul 2024',
     location: 'India',
-    summary: 'Scaled computer vision systems with transformer models and MLOps.',
+    domain: 'Computer vision at scale',
+    summary: 'Owned detection and segmentation models and their evaluation for a system processing 2M+ street-view images.',
     bullets: [
-      'Built transformer-based visual pollution detection achieving high accuracy at scale',
-      'Designed large-scale image analysis pipelines processing millions of frames',
-      'Implemented MLOps workflows with MLflow, Docker, and CI/CD for model lifecycle',
-      'Optimized GPU-accelerated inference reducing processing time significantly',
+      'Owned the detection and segmentation models and their evaluation for visual-pollution detection over 2M+ street-view images.',
+      'Built the annotation strategy; contributed to dataset preparation and ONNX export.',
+      'Models reached detection mAP > 0.60 and segmentation mAP50–95 ~0.27; the wider production system cut inference latency ~60% and manual inspection effort >70%.',
     ],
-    tags: ['Computer Vision', 'Transformers', 'MLOps', 'Docker', 'MLflow', 'YOLO', 'Object Detection', 'Image Segmentation'],
+    tags: ['Computer Vision', 'Object Detection', 'Image Segmentation', 'Annotation', 'ONNX', 'Evaluation', 'PyTorch'],
   },
   {
     id: 'tcs',
@@ -61,13 +70,13 @@ export const experiences: Experience[] = [
     role: 'Data Scientist',
     duration: 'Jun 2019 – Mar 2023',
     location: 'India',
-    summary: 'Delivered NLP, CV, BI, and data engineering solutions across domains.',
+    domain: 'Applied NLP, CV & analytics',
+    summary: 'NLP, computer vision, BI, and data-engineering solutions across enterprise clients.',
     bullets: [
-      'Built NLP systems for email classification and text analytics across business units',
-      'Developed computer vision models for document processing and image analysis',
-      'Created BI dashboards and risk analysis frameworks for enterprise clients',
-      'Designed data pipelines for automated experimentation workflows',
+      'Built NLP systems for email classification and text analytics across business units.',
+      'Developed computer vision models for document processing and image analysis.',
+      'Created BI dashboards and risk-analysis frameworks, and designed data pipelines for experimentation workflows.',
     ],
-    tags: ['NLP', 'Computer Vision', 'Business Intelligence', 'Machine Learning', 'Data Science'],
+    tags: ['NLP', 'Computer Vision', 'Business Intelligence', 'Machine Learning', 'Data Engineering'],
   },
 ];
