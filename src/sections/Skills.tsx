@@ -62,6 +62,7 @@ export function Skills() {
 
                 {cap.proof.length > 0 && (
                   <div className="mt-auto space-y-1 border-t border-slate-800 pt-3">
+                    <p className="mb-1 font-mono text-[9px] uppercase tracking-wider text-slate-600">Seen in</p>
                     {cap.proof.map((p) => {
                       const inner = (
                         <>

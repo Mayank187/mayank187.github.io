@@ -25,11 +25,9 @@ export const experiences: Experience[] = [
     domain: 'Researcher-facing AI assistant (beta) + production APIs',
     summary: 'Core AI/ML contributor on a researcher-facing AI assistant (beta); own the multi-paper chat evaluation framework and a separate production academic-question API.',
     bullets: [
-      'Core AI/ML contributor across a researcher-facing beta assistant ,  reading assistance, manuscript advice, related-paper discovery, question generation, technical review, and multi-paper chat.',
-      'Built an agentic technical-review workflow for structured analysis of research papers, assessed against peer-review data and human evaluation.',
-      'Contributed to multi-paper chat (HyDE query rewriting, dense retrieval with metadata filtering, citations) and owned question generation.',
-      'Implemented and own end to end the evaluation framework for multi-paper chat, decomposing answer quality into retrieval, grounding, relevance, and citation dimensions.',
-      'Separately, own a production academic-question API for the Springer Nature website (~1.5M PostgreSQL records; 100–150 RPS target, ~600 ms P90).',
+      'Core AI/ML contributor across a researcher-facing beta assistant — technical review, multi-paper chat, related-paper discovery, and question generation (owned).',
+      'Implemented and own end to end the multi-paper chat evaluation framework, decomposing answer quality into retrieval, grounding, relevance, and citation dimensions.',
+      'Separately own a production academic-question API (~1.5M PostgreSQL records; 100–150 RPS target, ~600 ms P90).',
     ],
     tags: ['LLM', 'RAG', 'HyDE', 'Dense Retrieval', 'Evaluation', 'Multi-paper Chat', 'Technical Review', 'FastAPI', 'PostgreSQL', 'Kubernetes'],
   },
@@ -43,7 +41,7 @@ export const experiences: Experience[] = [
     domain: 'E-commerce search & query understanding',
     summary: 'Owned the out-of-domain query classifier end to end; contributed query-understanding signals to the wider e-commerce search ranking system.',
     bullets: [
-      'Owned the out-of-domain query classifier and its CPU inference end to end ,  >0.90 F1, 0.99 precision, ~10 ms inference (ONNX) against a 20 ms target.',
+      'Owned the out-of-domain query classifier and its CPU inference end to end, >0.90 F1, 0.99 precision, ~10 ms inference (ONNX) against a 20 ms target.',
       'Contributed query-understanding signals, embeddings, and retrieval components used by the wider ranking system.',
       'Broader search-improvement work delivered ~35% relevance, ~25% engagement, and ~20% conversion gains in A/B testing.',
     ],
