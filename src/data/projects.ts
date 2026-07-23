@@ -10,6 +10,8 @@ export interface Project {
   tier: ProjectTier;
   featured: boolean;
   icon?: string;
+  /** Short status/stage chip, e.g. "Beta product", "Live production API". */
+  status?: string;
 
   /** One-line summary for cards. */
   summary: string;
@@ -53,10 +55,11 @@ export const projects: Project[] = [
     tier: 'flagship',
     featured: true,
     icon: '🔎',
+    status: 'Beta product',
     summary:
-      'Core AI/ML engineer on a researcher-facing AI assistant (beta), contributing across its major AI workflows ,  with an agentic technical-review flow, work on multi-paper chat and question generation, and the multi-paper evaluation framework I own end to end.',
+      'Core AI/ML engineer on a researcher-facing AI assistant (beta), contributing across its major AI workflows, with an agentic technical-review flow, work on multi-paper chat and question generation, and the multi-paper evaluation framework I own end to end.',
     problem:
-      'Researchers need to reason across many papers at once ,  comparing evidence, methods, and conclusions ,  but single-document tools make that fragmented, and multi-document answer quality is hard to measure.',
+      'Researchers need to reason across many papers at once, comparing evidence, methods, and conclusions, but single-document tools make that fragmented, and multi-document answer quality is hard to measure.',
     whyItMattered:
       'A cross-paper answer is only useful if it stays grounded in the right sources and that quality can actually be measured.',
     scale:
@@ -64,7 +67,7 @@ export const projects: Project[] = [
     constraints: [
       'Answers must stay grounded across multiple documents, with citations',
       'Multi-document answer quality must be measurable',
-      'One product built by a team ,  features shared, ownership focused',
+      'One product built by a team, features shared, ownership focused',
     ],
     ownership:
       "Core AI/ML contributor across the product's major workflows. I own the implementation of the multi-paper chat evaluation framework end to end, built an agentic technical-review flow, own question generation, and contributed to multi-paper chat's conversation and retrieval flow.",
@@ -81,10 +84,10 @@ export const projects: Project[] = [
     outcome:
       'Beta product under active development and evaluation; my components sit within a larger platform built by a team.',
     lessons:
-      "For multi-paper assistance, the evaluation framework is as much the product as the model ,  you can't improve what you can't measure across documents.",
+      "For multi-paper assistance, the evaluation framework is as much the product as the model: you can't improve what you can't measure across documents.",
     stack: ['Python', 'LLMs', 'LangChain', 'LangGraph', 'HyDE', 'Dense Retrieval', 'FastAPI', 'Evaluation'],
     tags: ['LLM', 'RAG', 'Evaluation', 'Multi-paper Chat'],
-    confidentiality: 'Employer product (beta) ,  described generally; product name and proprietary details omitted.',
+    confidentiality: 'Employer product (beta), described generally; product name and proprietary details omitted.',
   },
   {
     id: 'samsung-search',
@@ -95,6 +98,7 @@ export const projects: Project[] = [
     tier: 'flagship',
     featured: true,
     icon: '🛒',
+    status: 'Production system',
     summary:
       'Owned the out-of-domain query classifier (and its CPU inference) end to end, and contributed query-understanding signals used by the wider e-commerce search ranking system.',
     problem:
@@ -113,7 +117,7 @@ export const projects: Project[] = [
       'Detect out-of-domain queries so they fail gracefully instead of returning confident nonsense, and produce query-understanding signals the ranking system consumes.',
     architecture: ['Query', 'Query classification', 'OOD detection', 'Query-understanding signals', 'Ranking'],
     decisions: [
-      'Explicit OOD detection at a 0.75 threshold ,  0.99 precision so in-domain queries are rarely dropped',
+      'Explicit OOD detection at a 0.75 threshold, 0.99 precision so in-domain queries are rarely dropped',
       'Exported to ONNX and ran CPU inference at ~10 ms against a 20 ms target',
       'Query-understanding signals reused by the wider ranking system',
     ],
@@ -122,10 +126,10 @@ export const projects: Project[] = [
     outcome:
       'The broader search-improvement initiative delivered ~35% higher relevance, ~25% stronger engagement, and ~20% higher conversion in A/B testing. Within that work, I owned the OOD classifier: >0.90 F1, 0.99 precision, ~10 ms CPU inference.',
     lessons:
-      'Knowing when not to answer confidently ,  OOD detection ,  keeps a search system honest.',
+      'Knowing when not to answer confidently, OOD detection, keeps a search system honest.',
     stack: ['Python', 'ONNX', 'CPU Inference', 'FastAPI', 'MLflow', 'Classification', 'OOD Detection'],
     tags: ['Search', 'Query Understanding', 'OOD Detection', 'ONNX', 'Ranking', 'NLP'],
-    confidentiality: 'Client system ,  described at a general level; proprietary details omitted.',
+    confidentiality: 'Client system, described at a general level; proprietary details omitted.',
   },
   {
     id: 'academic-question-api',
@@ -135,8 +139,9 @@ export const projects: Project[] = [
     tier: 'flagship',
     featured: true,
     icon: '🧩',
+    status: 'Live production API',
     summary:
-      'A production API on the Springer Nature website that serves pre-generated suggested questions for articles ,  owned end to end, from API and PostgreSQL through caching, concurrency, load testing, and Kubernetes deployment. Separate from the AI research assistant.',
+      'A production API on the Springer Nature website that serves pre-generated suggested questions for articles, owned end to end, from API and PostgreSQL through caching, concurrency, load testing, and Kubernetes deployment. Separate from the AI research assistant.',
     problem:
       'The website needs fast, reliable question suggestions for articles at scale. Generating them per request is too slow, so they are precomputed and served under tight latency and throughput targets.',
     whyItMattered:
@@ -148,7 +153,7 @@ export const projects: Project[] = [
       'Headroom to grow from ~1.5M toward ~22M records',
     ],
     ownership:
-      'Owned the service end to end ,  API architecture, FastAPI implementation, PostgreSQL data layer, caching, concurrency control, load testing, containerisation, Kubernetes deployment, monitoring, and reliability fixes.',
+      'Owned the service end to end, API architecture, FastAPI implementation, PostgreSQL data layer, caching, concurrency control, load testing, containerisation, Kubernetes deployment, monitoring, and reliability fixes.',
     approach:
       'Questions are generated ahead of time and stored, so the live path is a fast lookup: accept a DOI or question ID, return two suggested questions (404 when none exists), with a TTL cache and per-key async locking to hold latency down and avoid duplicate work under load.',
     architecture: ['Request (DOI / question ID)', 'FastAPI + Uvicorn', 'TTL cache', 'PostgreSQL lookup', 'Two questions'],
@@ -164,7 +169,7 @@ export const projects: Project[] = [
       'At user-facing scale, the interesting engineering is off the model: caching, concurrency, and load behaviour decide whether it holds up.',
     stack: ['Python', 'FastAPI', 'Uvicorn', 'PostgreSQL', 'Docker', 'Kubernetes'],
     tags: ['API', 'Backend', 'Reliability', 'Kubernetes'],
-    confidentiality: 'Springer Nature service ,  described at a general level.',
+    confidentiality: 'Springer Nature service, described at a general level.',
   },
   {
     id: 'visual-pollution',
@@ -175,9 +180,10 @@ export const projects: Project[] = [
     tier: 'flagship',
     featured: true,
     icon: '👁️',
+    status: 'Production system',
     summary: 'Owned the detection and segmentation models and their evaluation for a computer-vision system processing 2M+ street-view images.',
     problem:
-      "Detecting visual pollution ,  illegal signage, structural damage ,  across millions of street-view images is impractical by hand, and naive models don't survive real-world variety.",
+      "Detecting visual pollution, illegal signage, structural damage, across millions of street-view images is impractical by hand, and naive models don't survive real-world variety.",
     whyItMattered: "Manual inspection doesn't scale to the image volumes involved.",
     scale: 'A computer-vision system processing 2M+ street-view images.',
     constraints: [
@@ -201,10 +207,10 @@ export const projects: Project[] = [
     lessons: 'Good labels and honest evaluation moved the models more than any architecture tweak.',
     stack: ['Python', 'PyTorch', 'Object Detection', 'Image Segmentation', 'ONNX', 'Evaluation'],
     tags: ['Computer Vision', 'Object Detection', 'Image Segmentation', 'Evaluation'],
-    confidentiality: 'Employer system ,  described at a general level; proprietary details omitted.',
+    confidentiality: 'Employer system, described at a general level; proprietary details omitted.',
   },
 
-  // ── Secondary work ,  deliberately lower visual weight ────────────────
+  // ── Secondary work, deliberately lower visual weight ────────────────
   {
     id: 'stackoverflow-tags',
     title: 'Stack Overflow Tag Prediction',
@@ -241,5 +247,9 @@ export const projects: Project[] = [
   },
 ];
 
-export const flagshipProjects = projects.filter((p) => p.tier === 'flagship');
+// Explicit flagship display order (research assistant → question API → search → CV).
+const flagshipOrder = ['ai-research-assistant', 'academic-question-api', 'samsung-search', 'visual-pollution'];
+export const flagshipProjects = flagshipOrder
+  .map((id) => projects.find((p) => p.id === id))
+  .filter((p): p is Project => Boolean(p && p.tier === 'flagship'));
 export const secondaryProjects = projects.filter((p) => p.tier !== 'flagship');
