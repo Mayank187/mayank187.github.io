@@ -35,7 +35,7 @@ export const capabilities: Capability[] = [
     icon: 'Search',
     proficiency: 'production',
     description:
-      'Understanding the query before ranking ,  classification and out-of-distribution detection ,  plus the retrieval that feeds results.',
+      'Understanding the query before ranking, classification and out-of-distribution detection, plus the retrieval that feeds results.',
     technologies: ['Query Classification', 'OOD Detection', 'Dense Retrieval', 'Metadata Filtering', 'Vector Search', 'Ranking Signals'],
     proof: [
       { text: 'OOD classifier for e-commerce search (Samsung / Tech Mahindra)', href: '#projects' },
@@ -48,7 +48,7 @@ export const capabilities: Capability[] = [
     icon: 'Sparkles',
     proficiency: 'production',
     description:
-      'Retrieval-augmented generation with grounding, citations, and agentic flows ,  built around evaluation rather than vibes.',
+      'Retrieval-augmented generation with grounding, citations, and agentic flows, built around evaluation rather than vibes.',
     technologies: ['RAG', 'HyDE', 'Dense Retrieval', 'Grounding', 'LangGraph', 'Agentic Workflows'],
     proof: [{ text: 'Multi-paper chat & evaluation on a researcher-facing AI assistant (Springer Nature)', href: '#projects' }],
   },
@@ -58,7 +58,7 @@ export const capabilities: Capability[] = [
     icon: 'MessageSquare',
     proficiency: 'production',
     description:
-      'Turning messy text into usable signals ,  classification, multi-label, and the applied ML around it.',
+      'Turning messy text into usable signals, classification, multi-label, and the applied ML around it.',
     technologies: ['Transformers', 'Text Classification', 'Multi-label Classification', 'Embeddings', 'scikit-learn'],
     proof: [{ text: 'Query understanding (Samsung); NLP & text analytics (TCS)', href: '#experience' }],
   },
@@ -78,7 +78,7 @@ export const capabilities: Capability[] = [
     icon: 'Server',
     proficiency: 'production',
     description:
-      'Clean services other teams build on ,  with caching, concurrency, and load behaviour that hold up at scale.',
+      'Clean services other teams build on, with caching, concurrency, and load behaviour that hold up at scale.',
     technologies: ['FastAPI', 'Uvicorn', 'REST', 'Async Python', 'Caching'],
     proof: [{ text: 'Academic question-delivery API (Springer Nature)', href: '#projects' }],
   },
@@ -88,7 +88,7 @@ export const capabilities: Capability[] = [
     icon: 'Container',
     proficiency: 'production',
     description:
-      'Shipping to production and knowing whether it holds up ,  Kubernetes, load testing, monitoring, and LLM evaluation.',
+      'Shipping to production and knowing whether it holds up, Kubernetes, load testing, monitoring, and LLM evaluation.',
     technologies: ['Docker', 'Kubernetes', 'Load Testing', 'Monitoring', 'LLM Evaluation'],
     proof: [{ text: 'Owned deployment & reliability for the question-delivery API; evaluation framework for multi-paper chat (Springer Nature)', href: '#projects' }],
   },

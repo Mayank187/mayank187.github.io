@@ -7,7 +7,7 @@ interface Props {
 }
 
 /**
- * Section heading ,  animates as a single unit (short fade + small rise), never
+ * Section heading, animates as a single unit (short fade + small rise), never
  * per-letter, never blurred. The complete title is readable almost immediately,
  * and reduced-motion users see the final heading with no animation.
  */

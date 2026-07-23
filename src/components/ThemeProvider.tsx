@@ -23,7 +23,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement;
     const c = theme.colors;
 
-    // Brand colors ,  use explicit shades if provided, else generate from primary
+    // Brand colors, use explicit shades if provided, else generate from primary
     const brand = c.brand ?? {
       50: lighten(c.primary, 0.85),
       100: lighten(c.primary, 0.75),
@@ -78,7 +78,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.style.setProperty('--font-display', theme.fonts.display);
     root.style.setProperty('--font-mono', theme.fonts.mono);
 
-    // Body ,  text color only; background stays on html so the dots canvas shows through
+    // Body, text color only; background stays on html so the dots canvas shows through
     document.body.style.color = c.text.primary;
 
     // Grid & glow
