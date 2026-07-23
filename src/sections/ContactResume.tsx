@@ -18,7 +18,7 @@ export function ContactResume() {
   return (
     <section id="contact" className="relative flex min-h-dvh items-center px-4 py-16 md:py-24 md:px-6">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading prefix="07" title="Get in Touch" id="contact-heading" />
+        <SectionHeading prefix="06" title="Get in Touch" id="contact-heading" />
 
         <motion.div
           variants={stagger(0.12)}
@@ -27,7 +27,7 @@ export function ContactResume() {
           viewport={viewport}
           className="space-y-6"
         >
-          {/* Current Focus — full width */}
+          {/* Current Focus ,  full width */}
           <motion.div variants={fadeUp}>
             <HolographicCard className="p-8">
               <div className="mb-4 flex items-center gap-2">
@@ -35,9 +35,8 @@ export function ContactResume() {
                 <h3 className="font-mono text-xs uppercase tracking-widest text-brand-400">
                   current_focus
                 </h3>
-                <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-green-500/30 bg-green-500/10 px-2 py-0.5 font-mono text-xs text-green-400">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
-                  active
+                <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-slate-700 bg-slate-800/60 px-2 py-0.5 font-mono text-xs text-slate-400">
+                  now
                 </span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -53,7 +52,7 @@ export function ContactResume() {
             </HolographicCard>
           </motion.div>
 
-          {/* Contact + Resume — side by side */}
+          {/* Contact + Resume ,  side by side */}
           <div className="grid gap-6 md:grid-cols-2">
             {/* Contact card */}
             <motion.div variants={fadeUp}>
@@ -66,7 +65,7 @@ export function ContactResume() {
                     </h3>
                   </div>
                   <p className="mb-6 text-sm text-slate-400">
-                    Open to discussing production AI systems, engineering challenges, or collaboration opportunities.
+                    {profile.availability} ,  production AI systems, retrieval and search, or interesting engineering problems.
                   </p>
 
                   <div className="mb-6 flex flex-col gap-3">
@@ -146,9 +145,9 @@ export function ContactResume() {
 
                   <div className="mb-6 grid grid-cols-2 gap-3">
                     {profile.metrics.slice(0, 4).map((m) => (
-                      <div key={m.label} className="rounded-lg border border-slate-700/50 bg-slate-800/30 px-3 py-2">
-                        <p className="text-sm font-semibold text-slate-100">{m.label}</p>
-                        <p className="font-mono text-[10px] text-slate-500">{m.sublabel}</p>
+                      <div key={m.sublabel} className="rounded-lg border border-slate-700/50 bg-slate-800/30 px-3 py-2">
+                        <p className="text-xs font-semibold leading-snug text-slate-100">{m.label}</p>
+                        <p className="mt-0.5 font-mono text-[10px] text-slate-500">{m.sublabel}</p>
                       </div>
                     ))}
                   </div>

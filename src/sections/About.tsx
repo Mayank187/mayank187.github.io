@@ -7,9 +7,9 @@ import { stagger, fadeUp, viewport } from '../data/animations';
 const profileFields = [
   { key: 'role', value: profile.title },
   { key: 'location', value: profile.location },
-  { key: 'focus', value: 'LLMs, RAG, NLP, MLOps' },
-  { key: 'status', value: '● available for impact', color: 'text-green-400' },
-  { key: 'education', value: 'B.Tech CSE, SRM (2015-2019)' },
+  { key: 'focus', value: 'Search, RAG, NLP, CV' },
+  { key: 'open_to', value: 'meaningful conversations', color: 'text-brand-400' },
+  { key: 'education', value: 'B.Tech CSE, SRM (2015–2019)' },
 ] as const;
 
 export function About() {
@@ -27,7 +27,7 @@ export function About() {
         >
           {/* Top row: Bio + Terminal card */}
           <div className="grid gap-6 md:grid-cols-5">
-            {/* Bio — takes 3 cols */}
+            {/* Bio ,  takes 3 cols */}
             <motion.div variants={fadeUp} className="md:col-span-3">
               <HolographicCard className="h-full p-8">
                 <h3 className="mb-4 font-display text-lg font-bold text-slate-100">
@@ -43,7 +43,7 @@ export function About() {
               </HolographicCard>
             </motion.div>
 
-            {/* Terminal profile card — takes 2 cols */}
+            {/* Terminal profile card ,  takes 2 cols */}
             <motion.div variants={fadeUp} className="md:col-span-2">
               <HolographicCard className="h-full p-6">
                 {/* Terminal chrome */}
@@ -79,13 +79,13 @@ export function About() {
             </motion.div>
           </div>
 
-          {/* Bottom row: Metrics */}
+          {/* Bottom row: honest highlights (verifiable facts, not marketing categories) */}
           <motion.div variants={fadeUp}>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               {profile.metrics.map((m) => (
-                <HolographicCard key={m.label} className="p-5 text-center">
-                  <p className="text-lg font-bold text-slate-100">{m.label}</p>
-                  <p className="font-mono text-[11px] text-slate-500">{m.sublabel}</p>
+                <HolographicCard key={m.sublabel} className="flex flex-col justify-center p-5 text-center">
+                  <p className="text-sm font-bold leading-snug text-slate-100 md:text-base">{m.label}</p>
+                  <p className="mt-1 font-mono text-[11px] text-slate-500">{m.sublabel}</p>
                 </HolographicCard>
               ))}
             </div>

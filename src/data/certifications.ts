@@ -2,6 +2,10 @@ export interface Certification {
   title: string;
   issuer: string;
   icon: string;
+  /** Optional ,  add when the completion year is confirmed. */
+  year?: string;
+  /** Optional ,  add a verifiable credential URL when available. */
+  link?: string;
 }
 
 export interface Award {
