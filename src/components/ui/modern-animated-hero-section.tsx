@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, FileText, ChevronDown } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 import { profile } from '../../data/profile';
+import { ProofStrip } from '../../sections/ProofStrip';
 
 const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/{}[]=+*';
 const SCRAMBLE = '01<>-_/\\[]{}=+*^?#$%&';
@@ -11,7 +12,7 @@ const SCRAMBLE = '01<>-_/\\[]{}=+*^?#$%&';
  * as the H1 text (with an aria-label) so it is stable for screen readers, SEO,
  * no-JS, and reduced-motion; the per-letter spans are aria-hidden and, when
  * motion is allowed, scramble through glyphs and settle to the final letters
- * left-to-right. Runs once, then stops ,  no continuous scrambling. DOM is
+ * left-to-right. Runs once, then stops, no continuous scrambling. DOM is
  * updated directly via refs, so there is no per-frame React re-render.
  */
 function MatrixName({ text, className }: { text: string; className?: string }) {
@@ -21,8 +22,8 @@ function MatrixName({ text, className }: { text: string; className?: string }) {
   useEffect(() => {
     if (reduceMotion || !ref.current) return;
     const spans = Array.from(ref.current.querySelectorAll<HTMLSpanElement>('[data-final]'));
-    const perChar = 55; // stagger between characters
-    const settle = 420; // scramble time per character
+    const perChar = 28; // stagger between characters (snappy ~0.7s total)
+    const settle = 250; // scramble time per character
     const start = performance.now();
     let raf = 0;
 
@@ -69,7 +70,7 @@ interface RainChar {
 }
 
 /**
- * Ambient falling glyphs ,  decorative only. The pool is generated ONCE at
+ * Ambient falling glyphs, decorative only. The pool is generated ONCE at
  * module load (not during render, so it is stable and lint-clean). Animation
  * is pure CSS (see `.hero-rain-char` in index.css): no per-frame React state,
  * no rAF, no setInterval. The layer is aria-hidden and is not rendered at all
@@ -97,10 +98,10 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[92vh] items-center justify-center overflow-hidden px-4"
+      className="relative flex min-h-screen flex-col overflow-hidden px-4 pb-6 pt-20 md:px-6"
       style={{ background: 'var(--color-surface-950)' }}
     >
-      {/* Ambient falling glyphs ,  decorative */}
+      {/* Ambient falling glyphs, decorative */}
       <div aria-hidden="true" className="hero-rain pointer-events-none absolute inset-0 overflow-hidden">
         {chars.map((c, i) => (
           <span
@@ -131,8 +132,9 @@ export default function Hero() {
         style={{ background: 'linear-gradient(to top, var(--color-surface-950) 0%, transparent 100%)' }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-3xl text-center">
+      {/* Content — centered in the space above the proof strip */}
+      <div className="relative z-10 flex flex-1 items-center justify-center">
+        <div className="mx-auto max-w-3xl text-center">
         <motion.p {...fade(0)} className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-brand-400">
           {profile.location} · {profile.title}
         </motion.p>
@@ -169,18 +171,13 @@ export default function Hero() {
             <FileText aria-hidden="true" size={16} /> View Résumé
           </a>
         </motion.div>
+        </div>
       </div>
 
-      {/* Scroll cue */}
-      <motion.a
-        href="#about"
-        aria-label="Scroll to About section"
-        {...fade(0.5)}
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-slate-500 transition-colors hover:text-brand-400"
-      >
-        <span className="font-mono text-[10px] uppercase tracking-widest">Scroll</span>
-        <ChevronDown aria-hidden="true" size={18} className={reduceMotion ? undefined : 'hero-bounce'} />
-      </motion.a>
+      {/* Proof strip — completes the hero landing, fully in-view */}
+      <div className="relative z-10">
+        <ProofStrip />
+      </div>
     </section>
   );
 }
