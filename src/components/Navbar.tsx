@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
 import { navItems } from '../data/navigation';
@@ -12,6 +12,13 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const active = useActiveSection(navItems.map((n) => n.id));
   const scrolled = useScrollDirection();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  const closeMobile = () => {
+    setMobileOpen(false);
+    // Return focus to the toggle so keyboard users aren't stranded.
+    toggleRef.current?.focus();
+  };
 
   return (
     <nav
@@ -24,7 +31,8 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
         <a
-          href="#"
+          href="#main"
+          aria-label="Back to top"
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -67,11 +75,11 @@ export function Navbar() {
         </LayoutGroup>
 
         <div className="hidden items-center gap-2 md:flex">
-          <a href={profile.github} target="_blank" rel="noopener noreferrer" className="rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-200">
-            <Github size={18} />
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)" className="rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-200">
+            <Github aria-hidden="true" size={18} />
           </a>
-          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-200">
-            <Linkedin size={18} />
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in a new tab)" className="rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-200">
+            <Linkedin aria-hidden="true" size={18} />
           </a>
           <a
             href={profile.resumePath}
@@ -85,10 +93,15 @@ export function Navbar() {
 
         {/* Mobile toggle */}
         <button
+          ref={toggleRef}
+          type="button"
+          aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
           className="rounded-md p-2 text-slate-400 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          {mobileOpen ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
         </button>
       </div>
 
@@ -96,6 +109,7 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-menu"
             variants={mobileMenu}
             initial="hidden"
             animate="visible"
@@ -110,7 +124,7 @@ export function Navbar() {
                   href={`#${item.id}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    setMobileOpen(false);
+                    closeMobile();
                     setTimeout(() => {
                       document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' });
                     }, 300);
@@ -129,8 +143,8 @@ export function Navbar() {
                 variants={fadeUp}
                 className="mt-3 flex items-center gap-3 border-t border-slate-800 pt-3"
               >
-                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200"><Github size={18} /></a>
-                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200"><Linkedin size={18} /></a>
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)" className="text-slate-400 hover:text-slate-200"><Github aria-hidden="true" size={18} /></a>
+                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in a new tab)" className="text-slate-400 hover:text-slate-200"><Linkedin aria-hidden="true" size={18} /></a>
                 <a href={profile.resumePath} target="_blank" rel="noopener noreferrer" className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-brand-400/30 bg-brand-400/10 px-3 py-1.5 font-mono text-xs text-brand-400"><FileText size={14} /> resume.pdf</a>
               </motion.div>
             </div>
