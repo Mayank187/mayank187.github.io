@@ -27,7 +27,7 @@ export function ContactResume() {
           viewport={viewport}
           className="space-y-6"
         >
-          {/* Current Focus ,  full width */}
+          {/* Current Focus, full width */}
           <motion.div variants={fadeUp}>
             <HolographicCard className="p-8">
               <div className="mb-4 flex items-center gap-2">
@@ -52,7 +52,7 @@ export function ContactResume() {
             </HolographicCard>
           </motion.div>
 
-          {/* Contact + Resume ,  side by side */}
+          {/* Contact + Resume, side by side */}
           <div className="grid gap-6 md:grid-cols-2">
             {/* Contact card */}
             <motion.div variants={fadeUp}>
@@ -65,7 +65,7 @@ export function ContactResume() {
                     </h3>
                   </div>
                   <p className="mb-6 text-sm text-slate-400">
-                    {profile.availability} ,  production AI systems, retrieval and search, or interesting engineering problems.
+                    {profile.availability} around senior AI/ML engineering, search, retrieval, evaluation, and production AI systems.
                   </p>
 
                   <div className="mb-6 flex flex-col gap-3">
